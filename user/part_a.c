@@ -4,24 +4,32 @@
 
 int main(int argc, char *argv[])
 {
-
-    int pid = fork();
-    int fd = open("abc.txt", O_CREATE);
-    close(fd);
+    
+    int fd = open("abc.txt", O_CREATE | O_RDWR);
+    if(fd >= 0) {
+        close(fd);
+    }
     mkdir("files");
+
+  
+    int pid = fork();
+
     if (pid > 0)
     {
-
-        // do nothing
+       
+        wait(0);
     }
     else if (pid == 0)
     {
-
+        
         char *argvv[2];
         argvv[0] = "ls";
         argvv[1] = 0;
         exec("ls", argvv);
-        exit(0);
+        
+        
+        
+        exit(1);
     }
     else
     {

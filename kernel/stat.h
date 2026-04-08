@@ -9,3 +9,10 @@ struct stat {
   short nlink; // Number of links to file
   uint64 size; // Size of file in bytes
 };
+
+struct fsinfo {
+  uint num_files; 
+  uint num_dirs;
+  uint free_blocks;
+  uint inodes_used;
+};
